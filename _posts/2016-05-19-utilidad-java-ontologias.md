@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Una utilidad en Java para manipular Ontologías"
+title: "Loading ontologies with JAVA (old code 2012)"
 categories: 
     - "Java"
     - "Misc"
@@ -8,8 +8,11 @@ categories:
 
 Hace tiempo que no uso Java. Hoy me he encontrado este código para maninpular ontologías. Que tiempos! Lo dejo por aquí:
 
+A code to read ontologies using a reasoner. It is a very old code (2012).
 
-{% highlight java %}
+## My recipe
+
+```java
 
 import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -146,4 +149,4 @@ public class testQuery {
 
 }
 
-{% endhighlight %}
+```
