@@ -1,0 +1,18 @@
+- title: Blog
+  url: /
+- title: About
+  url: /about/
+- title: Cursos
+  url: /category/Cursos
+- title: Latex
+  url: /category/Latex
+- title: Categorias
+  url: /categories/
+- title: Tags
+  url: /tags/
+# - title: More
+#   sublinks:
+#     - title: FAQ
+#       url: /faq/
+#     - title: Docs
+#       url: /docs/
