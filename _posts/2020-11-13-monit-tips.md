@@ -71,11 +71,19 @@ check process mytest with pidfile /tmp/myscript.pid
    start = "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 test.py  >> /tmp/view.log 2>&1 &'"
    stop = "/usr/bin/killall python3"
    if does not exist for 3 cycles then exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Proceso Mytest No Existe'"
-   if inode usage > 80% then alert and exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Proceso Mytest Inode upper 80'"
-   if inode usage > 99% then stop and exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Proceso Mytest detenido por Inode'"
-   if cpu > 60% for 2 cycles then alert and exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Proceso Mytest CPU upper 60'"
-   if cpu > 95% for 10 cycles then stop and exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Proceso Mytest CPU upper 95'"
+   if cpu > 60% for 2 cycles then exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Proceso Mytest CPU up 60'"
+   if cpu > 95% for 10 cycles then stop 
+   if cpu > 95% for 10 cycles then exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Proceso Mytest DETENIDO - CPU up 95'"
    if cpu > 98% for 15 cycles then exec /sbin/reboot
+   if cpu > 98% for 15 cycles then exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Mytest Reiniciando sistema'"  
+
+   
+   if inode usage > 90% then stop
+   if inode usage > 90% then exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Proceso Mytest DETENIDO - INODE up 90'"
+   if inode usage > 95% then exec /sbin/reboot
+   if inode usage > 95% then exec "/bin/su - pi -c 'cd /home/pi; /usr/bin/python3 myalert.py Mytest Reiniciando sistema'" 
+
+  
 
 
 ```
