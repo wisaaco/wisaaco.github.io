@@ -12,7 +12,7 @@ categories:
 
 
 
-# Do animations with matplotlib figures and ffmepg
+# Make animations with matplotlib figures and ffmepg
 
 <figure>
   <img
