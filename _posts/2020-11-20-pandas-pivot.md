@@ -6,7 +6,7 @@ categories:
     - "Python"
 ---
 
-The pivot operation on a table transform some columns values in columns using other columns as a reference.
+The pivot operation of a dataframe transforms some columns values in columns using other columns as a reference. Sounds crazy, isn't?
 
 Code:
 ```python
