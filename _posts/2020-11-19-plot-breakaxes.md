@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A matplotlib recipe: break the axes"
+title: "A Matplotlib recipe: break the axes"
 categories: 
     - "Plot"
     - "Python"
@@ -10,7 +10,7 @@ categories:
 
 
 
-In some figures is important to "zoom" or highlight a region. You reach that effect breaking the axe.
+In some figures is important to "zoom" or highlight a region. You can reach the effect breaking the axe.
 
 <figure>
   <img

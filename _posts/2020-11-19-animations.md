@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Animations from matplotlib figures"
+title: "A video from matplotlib figures"
 categories: 
     - "Plot"
     - "Python"
@@ -12,7 +12,7 @@ categories:
 
 
 
-# Make animations with matplotlib figures and ffmepg
+# Make videos with matplotlib figures and ffmepg
 
 <figure>
   <img
