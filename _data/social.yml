@@ -1,9 +1,18 @@
 - title: GitHub
   url: https://github.com/wisaaco
-  icon: fab fa-github
+  icon: ai ai-github
 - title: Orcid
   url: http://orcid.org/0000-0002-2826-5970
   icon: ai ai-orcid
 - title: ResearchGate
   url: https://www.researchgate.net/profile/Isaac_Lera
-  icon: fab fa-researchgate
+  icon: ai ai-researchgate
+- title: Google Schoolar
+  url: https://scholar.google.es/citations?user=cLVksYoAAAAJ
+  icon: ai ai-google-scholar  
+- title: DBLP
+  url: https://dblp.org/pid/53/3569.html
+  icon: ai ai-dblp
+
+
+  
