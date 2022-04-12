@@ -14515,10 +14515,9 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Assignament-Optimization-Problem">Assignament Optimization Problem<a class="anchor-link" href="#Assignament-Optimization-Problem">&#182;</a></h1><p>Allocation problem: find the best HW-resource/node to allocate a service</p>
+<h1 id="PULP-library">PULP library<a class="anchor-link" href="#PULP-library">&#182;</a></h1><h2 id="%C2%A0Assignament-Optimization-Problem">&#160;Assignament Optimization Problem<a class="anchor-link" href="#%C2%A0Assignament-Optimization-Problem">&#182;</a></h2><p>Allocation problem: find the best HW-resource/node to allocate a service</p>
 
-<pre><code>alloc(service)= node
-`</code></pre>
+<pre><code>alloc(service)= node</code></pre>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15499,6 +15498,278 @@ sudo apt-get install glpk-utils
 `</code></pre>
 
 </div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Analysing-the-scalability">Analysing the scalability<a class="anchor-link" href="#Analysing-the-scalability">&#182;</a></h2>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">pulp</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2022</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">)</span>
+<span class="n">services</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">)</span>
+<span class="n">cost_units_service</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">services</span><span class="p">))]</span>
+<span class="n">latencies</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">))]</span>
+<span class="n">service_sla</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">services</span><span class="p">))]</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cost</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span><span class="n">cost_units_service</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">services</span><span class="p">)}</span>
+<span class="n">service_lat</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span><span class="n">service_sla</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">services</span><span class="p">)}</span>
+<span class="n">node_lat</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span><span class="n">latencies</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">)}</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">solver_alloc</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span><span class="n">services</span><span class="p">,</span><span class="n">cost</span><span class="p">,</span><span class="n">service_lat</span><span class="p">,</span><span class="n">node_lat</span><span class="p">,</span><span class="n">timeLimit</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">allocs</span> <span class="o">=</span> <span class="n">pulp</span><span class="o">.</span><span class="n">LpVariable</span><span class="o">.</span><span class="n">dicts</span><span class="p">(</span><span class="s2">&quot;allocation&quot;</span><span class="p">,[(</span><span class="n">node</span><span class="p">,</span> <span class="n">service</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span> <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">services</span><span class="p">],</span> <span class="n">cat</span><span class="o">=</span><span class="n">pulp</span><span class="o">.</span><span class="n">LpBinary</span><span class="p">)</span> 
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">pulp</span><span class="o">.</span><span class="n">LpProblem</span><span class="p">(</span><span class="s2">&quot;ilp&quot;</span><span class="p">,</span> <span class="n">pulp</span><span class="o">.</span><span class="n">LpMinimize</span><span class="p">)</span>
+    <span class="n">prob</span> <span class="o">+=</span> <span class="n">pulp</span><span class="o">.</span><span class="n">lpSum</span><span class="p">(</span><span class="n">cost</span><span class="p">[</span><span class="n">service</span><span class="p">]</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">allocs</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span> <span class="n">service</span><span class="p">)]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">)</span> <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">services</span><span class="p">)</span>
+    <span class="c1">#all products have to be allocated</span>
+    <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">services</span><span class="p">:</span>
+        <span class="n">prob</span><span class="o">+=</span> <span class="n">pulp</span><span class="o">.</span><span class="n">lpSum</span><span class="p">(</span><span class="n">allocs</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span> <span class="n">service</span><span class="p">)]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        
+    <span class="c1">#More constraints</span>
+    <span class="k">for</span> <span class="n">e</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+        <span class="n">prob</span> <span class="o">+=</span> <span class="n">pulp</span><span class="o">.</span><span class="n">lpSum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">allocs</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span> <span class="n">service</span><span class="p">)]</span><span class="o">*</span><span class="n">cost</span><span class="p">[</span><span class="n">service</span><span class="p">]</span> <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">services</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mf">100.0</span><span class="p">,</span> <span class="s2">&quot;CosteAsumible_</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">e</span><span class="p">])</span>    
+
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">services</span><span class="p">:</span>
+            <span class="n">prob</span> <span class="o">+=</span> <span class="n">pulp</span><span class="o">.</span><span class="n">lpSum</span><span class="p">(</span><span class="n">allocs</span><span class="p">[(</span><span class="n">node</span><span class="p">,</span> <span class="n">service</span><span class="p">)]</span><span class="o">*</span><span class="n">node_lat</span><span class="p">[</span><span class="n">node</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">service_lat</span><span class="p">[</span><span class="n">service</span><span class="p">],</span> <span class="s2">&quot;Constr_Lat_S</span><span class="si">%s</span><span class="s2">_N</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">service</span><span class="p">,</span><span class="n">node</span><span class="p">)</span> 
+    
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">pulp</span><span class="o">.</span><span class="n">PULP_CBC_CMD</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">timeLimit</span><span class="o">=</span><span class="n">timeLimit</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">status</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="o">-</span><span class="n">start</span>
+
+    
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">solver_alloc</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span><span class="n">services</span><span class="p">,</span><span class="n">cost</span><span class="p">,</span><span class="n">service_lat</span><span class="p">,</span><span class="n">node_lat</span><span class="p">,</span><span class="n">timeLimit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[48]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>(-1, 0.03782144199999493)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#scaling, step=10</span>
+<span class="n">node_test</span><span class="p">,</span> <span class="n">time_test</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step: &quot;</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="o">+</span><span class="n">w</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<span class="c1">#    services = [&quot;S&quot;+w+str(i) for w in list(string.ascii_uppercase) for i in range(n)]</span>
+<span class="c1">#    services = [&quot;SA0&quot;]</span>
+    <span class="n">services</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;S&quot;</span><span class="o">+</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">)]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;total nodes:&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">))</span>
+    <span class="n">node_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">))</span>
+    
+    <span class="n">cost_units_service</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">services</span><span class="p">))]</span>
+    <span class="n">latencies</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">))]</span>
+    <span class="n">service_sla</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">services</span><span class="p">))]</span>
+
+    <span class="n">cost</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span><span class="n">cost_units_service</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">services</span><span class="p">)}</span>
+    <span class="n">service_lat</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span><span class="n">service_sla</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">services</span><span class="p">)}</span>
+    <span class="n">node_lat</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span><span class="n">latencies</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">)}</span>
+
+    <span class="n">found</span><span class="p">,</span> <span class="n">response</span> <span class="o">=</span> <span class="n">solver_alloc</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span><span class="n">services</span><span class="p">,</span><span class="n">cost</span><span class="p">,</span><span class="n">service_lat</span><span class="p">,</span><span class="n">node_lat</span><span class="p">,</span><span class="n">timeLimit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">found</span><span class="p">),</span> <span class="n">response</span><span class="p">)</span>
+    <span class="n">time_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Step:  1
+total nodes: 26
+True 0.03500134399973831
+Step:  6
+total nodes: 156
+True 0.23172726700022395
+Step:  11
+total nodes: 286
+True 0.34116768600006253
+Step:  16
+total nodes: 416
+True 0.517777622000267
+Step:  21
+total nodes: 546
+True 1.1037343630000578
+Step:  26
+total nodes: 676
+True 1.3212750520001464
+Step:  31
+total nodes: 806
+True 1.8405263620002188
+Step:  36
+total nodes: 936
+True 1.2379455400000552
+Step:  41
+total nodes: 1066
+True 3.4067374080000263
+Step:  46
+total nodes: 1196
+True 3.588439693000055
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[60]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">node_test</span><span class="p">,</span> <span class="n">time_test</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[60]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[&lt;matplotlib.lines.Line2D at 0x111942b20&gt;]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
