@@ -2,12 +2,12 @@
   url: /
 - title: About
   url: /about/
-- title: Cursos
-  url: /category/Cursos
+#- title: Cursos
+#  url: /category/Cursos
 - title: Latex
   url: /category/Latex
 - title: Categorias
-  url: /categories/
+  url: /category/
 - title: Tags
   url: /tags/
 # - title: More
