@@ -4,10 +4,12 @@
   url: /about/
 #- title: Cursos
 #  url: /category/Cursos
+- title: Python
+  url: /category/Python
 - title: Latex
   url: /category/Latex
-- title: Categorias
-  url: /category/
+#- title: Categorias
+#  url: /category/
 - title: Tags
   url: /tags/
 # - title: More
