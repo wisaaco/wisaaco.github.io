@@ -6,7 +6,7 @@ permalink: /about/
 
 #### English 
 
-Teaching and Research Staff of the Universitat de les Illes Balears since 2006. Associate Professor from 2020.
+Teaching and Research Staff of the Universitat de les Illes Balears since 2006. Associate Professor from 2021.
 
 This website aims to collect, mention or write down those code projects or interesting teaching curiosities.
 
@@ -14,7 +14,7 @@ My institutional [file](https://www.uib.es/es/personal/ABTIxNTgx/) contains comp
 
 
 #### Spanish
-Personal Docente e Investigador de la Universitat de les Illes Balears desde el 2006. Titular de Universidad desde 2020.
+Personal Docente e Investigador de la Universitat de les Illes Balears desde el 2006. Titular de Universidad desde 2021.
 
 Esta web pretende recopilar, mencionar o apuntar aquellos proyectos o curiosidades docentes más interesantes.
 
