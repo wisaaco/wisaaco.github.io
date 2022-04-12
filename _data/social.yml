@@ -1,6 +1,6 @@
 - title: GitHub
   url: https://github.com/wisaaco
-  icon: ai ai-github
+  icon: fa fa-github
 - title: Orcid
   url: http://orcid.org/0000-0002-2826-5970
   icon: ai ai-orcid
@@ -13,6 +13,6 @@
 - title: DBLP
   url: https://dblp.org/pid/53/3569.html
   icon: ai ai-dblp
-
-
-  
+- title: Zotero
+  url: https://www.zotero.org/isaaclera/library
+  icon: ai ai-zotero

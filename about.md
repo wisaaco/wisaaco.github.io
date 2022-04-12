@@ -4,11 +4,21 @@ title: About
 permalink: /about/
 ---
 
-#### English
-I have done university tasks at the University of Balearic Island (UIB) since 2006. On this website you can find projects related to my teaching and research that have no place in my institutional [file](https://www.uib.es/es/personal/ABTIxNTgx/). 
+#### English 
+
+Teaching and Research Staff of the Universitat de les Illes Balears since 2006.
+
+Associate Professor from 2020.
+
+This website aims to collect, mention or write down those projects or interesting teaching curiosities, show some code projects, save and disseminate various utilities and something else.
+
+In my institutional [file](https://www.uib.es/es/personal/ABTIxNTgx/)  you can find complementary information about my tasks at the UIB (CV, teaching, subjects, tutorials, management positions, etc.).
+
 
 #### Spanish
 Personal Docente e Investigador de la Universitat de les Illes Balears desde el 2006. 
+
+Titular de Universidad desde 2020.
 
 Esta web pretende recopilar, mencionar o apuntar aquellos proyectos o curiosidades docentes más interesantes, mostrar algunos proyectos de código, guardar y difundir utilidades varias y alguna cosa más.
 
