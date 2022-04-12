@@ -3,7 +3,7 @@
   icon: fab fa-github
 - title: Orcid
   url: http://orcid.org/0000-0002-2826-5970
-  icon: fab fa-orcid
+  icon: fa-brands fa-orcid
 - title: ResearchGate
   url: https://www.researchgate.net/profile/Isaac_Lera
   icon: fab fa-researchgate
