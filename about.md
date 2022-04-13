@@ -10,7 +10,7 @@ I am a lecturer and researcher at the Universitat de les Illes Balears since 200
 
 This website contains bits of code that I like to keep.
 
-In my institutional [file](https://www.uib.es/es/personal/ABTIxNTgx/) contains complementary information about my public duties at the UIB (CV, teaching, subjects, tutorials, management positions, etc.) and also, there are links to other research channels with my activity.
+My institutional [file](https://www.uib.es/es/personal/ABTIxNTgx/) contains complementary information about my public duties at the UIB (CV, teaching, subjects, tutorials, management positions, etc.) and also, there are links to other research channels with my activity.
 
 
 #### Spanish
