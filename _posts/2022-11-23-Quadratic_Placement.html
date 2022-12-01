@@ -16640,7 +16640,7 @@ class="
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[368]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[370]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Infraestructure = PODs?</span>
@@ -16675,7 +16675,7 @@ class="
                 <span class="n">equations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">distance</span><span class="p">))</span>
 
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">ans</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">equations</span><span class="p">,</span> <span class="n">syms</span><span class="p">)</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">equations</span><span class="p">,</span> <span class="n">syms</span><span class="p">,</span><span class="n">particular</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">quick</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">warn</span><span class="o">=</span><span class="kc">True</span>  <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Time: &quot;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">No solution for a dim == </span><span class="si">%i</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">dim</span>)
@@ -16704,18 +16704,463 @@ class="
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Dimension: 2
-	Time:  0.14975500106811523
+	Time:  0.15458893775939941
 	No solution for a dim == 2
 Dimension: 3
-	Time:  26.63046622276306
+	Time:  26.652655839920044
 	No solution for a dim == 3
 Dimension: 4
 </pre>
 </div>
 </div>
 
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb Cell 46</span> in <span class="ansi-cyan-fg">&lt;cell line: 12&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y105sZmlsZQ%3D%3D?line=29&#39;&gt;30&lt;/a&gt;</span>             equations.append(sp.Eq(eq, distance))
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y105sZmlsZQ%3D%3D?line=31&#39;&gt;32&lt;/a&gt;</span> start = time.time()
+<span class="ansi-green-fg">---&gt; &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y105sZmlsZQ%3D%3D?line=32&#39;&gt;33&lt;/a&gt;</span> ans = sp.solve(equations, syms,particular = True, quick=True,warn=True  )
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y105sZmlsZQ%3D%3D?line=33&#39;&gt;34&lt;/a&gt;</span> print(&#34;\tTime: &#34;,time.time()-start)
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y105sZmlsZQ%3D%3D?line=34&#39;&gt;35&lt;/a&gt;</span> if len(ans) == 0:
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/solvers/solvers.py:1114</span>, in <span class="ansi-cyan-fg">solve</span><span class="ansi-blue-fg">(f, *symbols, **flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1112</span>     solution = _solve(f[0], *symbols, **flags)
+<span class="ansi-green-intense-fg ansi-bold">   1113</span> else:
+<span class="ansi-green-fg">-&gt; 1114</span>     solution = _solve_system(f, symbols, **flags)
+<span class="ansi-green-intense-fg ansi-bold">   1116</span> #
+<span class="ansi-green-intense-fg ansi-bold">   1117</span> # postprocessing
+<span class="ansi-green-intense-fg ansi-bold">   1118</span> ###########################################################################
+<span class="ansi-green-intense-fg ansi-bold">   1119</span> # Restore masked-off objects
+<span class="ansi-green-intense-fg ansi-bold">   1120</span> if non_inverts:
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/solvers/solvers.py:1868</span>, in <span class="ansi-cyan-fg">_solve_system</span><span class="ansi-blue-fg">(exprs, symbols, **flags)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1865</span> for syms in subsets(free, len(polys)):
+<span class="ansi-green-intense-fg ansi-bold">   1866</span>     try:
+<span class="ansi-green-intense-fg ansi-bold">   1867</span>         # returns [] or list of tuples of solutions for syms
+<span class="ansi-green-fg">-&gt; 1868</span>         res = solve_poly_system(polys, *syms)
+<span class="ansi-green-intense-fg ansi-bold">   1869</span>         if res:
+<span class="ansi-green-intense-fg ansi-bold">   1870</span>             for r in res:
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/solvers/polysys.py:76</span>, in <span class="ansi-cyan-fg">solve_poly_system</span><span class="ansi-blue-fg">(seq, strict, *gens, **args)</span>
+<span class="ansi-green-intense-fg ansi-bold">     73</span>         except SolveFailed:
+<span class="ansi-green-intense-fg ansi-bold">     74</span>             pass
+<span class="ansi-green-fg">---&gt; 76</span> return solve_generic(polys, opt, strict=strict)
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/solvers/polysys.py:326</span>, in <span class="ansi-cyan-fg">solve_generic</span><span class="ansi-blue-fg">(polys, opt, strict)</span>
+<span class="ansi-green-intense-fg ansi-bold">    323</span>     return solutions
+<span class="ansi-green-intense-fg ansi-bold">    325</span> try:
+<span class="ansi-green-fg">--&gt; 326</span>     result = _solve_reduced_system(polys, opt.gens, entry=True)
+<span class="ansi-green-intense-fg ansi-bold">    327</span> except CoercionFailed:
+<span class="ansi-green-intense-fg ansi-bold">    328</span>     raise NotImplementedError
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/solvers/polysys.py:266</span>, in <span class="ansi-cyan-fg">solve_generic.&lt;locals&gt;._solve_reduced_system</span><span class="ansi-blue-fg">(system, gens, entry)</span>
+<span class="ansi-green-intense-fg ansi-bold">    263</span>     zeros = list(roots(system[0], gens[-1], strict=strict).keys())
+<span class="ansi-green-intense-fg ansi-bold">    264</span>     return [(zero,) for zero in zeros]
+<span class="ansi-green-fg">--&gt; 266</span> basis = groebner(system, gens, polys=True)
+<span class="ansi-green-intense-fg ansi-bold">    268</span> if len(basis) == 1 and basis[0].is_ground:
+<span class="ansi-green-intense-fg ansi-bold">    269</span>     if not entry:
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/polytools.py:6922</span>, in <span class="ansi-cyan-fg">groebner</span><span class="ansi-blue-fg">(F, *gens, **args)</span>
+<span class="ansi-green-intense-fg ansi-bold">   6871</span> @public
+<span class="ansi-green-intense-fg ansi-bold">   6872</span> def groebner(F, *gens, **args):
+<span class="ansi-green-intense-fg ansi-bold">   6873</span>     &#34;&#34;&#34;
+<span class="ansi-green-intense-fg ansi-bold">   6874</span>     Computes the reduced Groebner basis for a set of polynomials.
+<span class="ansi-green-intense-fg ansi-bold">   6875</span> 
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-intense-fg ansi-bold">   6920</span> 
+<span class="ansi-green-intense-fg ansi-bold">   6921</span>     &#34;&#34;&#34;
+<span class="ansi-green-fg">-&gt; 6922</span>     return GroebnerBasis(F, *gens, **args)
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/polytools.py:6961</span>, in <span class="ansi-cyan-fg">GroebnerBasis.__new__</span><span class="ansi-blue-fg">(cls, F, *gens, **args)</span>
+<span class="ansi-green-intense-fg ansi-bold">   6957</span> ring = PolyRing(opt.gens, opt.domain, opt.order)
+<span class="ansi-green-intense-fg ansi-bold">   6959</span> polys = [ring.from_dict(poly.rep.to_dict()) for poly in polys if poly]
+<span class="ansi-green-fg">-&gt; 6961</span> G = _groebner(polys, ring, method=opt.method)
+<span class="ansi-green-intense-fg ansi-bold">   6962</span> G = [Poly._from_dict(g, opt) for g in G]
+<span class="ansi-green-intense-fg ansi-bold">   6964</span> return cls._new(G, opt)
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/groebnertools.py:43</span>, in <span class="ansi-cyan-fg">groebner</span><span class="ansi-blue-fg">(seq, ring, method)</span>
+<span class="ansi-green-intense-fg ansi-bold">     40</span>     else:
+<span class="ansi-green-intense-fg ansi-bold">     41</span>         seq = [ s.set_ring(ring) for s in seq ]
+<span class="ansi-green-fg">---&gt; 43</span> G = _groebner(seq, ring)
+<span class="ansi-green-intense-fg ansi-bold">     45</span> if orig is not None:
+<span class="ansi-green-intense-fg ansi-bold">     46</span>     G = [ g.clear_denoms()[1].set_ring(orig) for g in G ]
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/groebnertools.py:238</span>, in <span class="ansi-cyan-fg">_buchberger</span><span class="ansi-blue-fg">(f, ring)</span>
+<span class="ansi-green-intense-fg ansi-bold">    236</span> # ordering divisors is on average more efficient [Cox] page 111
+<span class="ansi-green-intense-fg ansi-bold">    237</span> G1 = sorted(G, key=lambda g: order(f[g].LM))
+<span class="ansi-green-fg">--&gt; 238</span> ht = normal(h, G1)
+<span class="ansi-green-intense-fg ansi-bold">    240</span> if ht:
+<span class="ansi-green-intense-fg ansi-bold">    241</span>     G, CP = update(G, CP, ht[1])
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/groebnertools.py:104</span>, in <span class="ansi-cyan-fg">_buchberger.&lt;locals&gt;.normal</span><span class="ansi-blue-fg">(g, J)</span>
+<span class="ansi-green-intense-fg ansi-bold">    103</span> def normal(g, J):
+<span class="ansi-green-fg">--&gt; 104</span>     h = g.rem([ f[j] for j in J ])
+<span class="ansi-green-intense-fg ansi-bold">    106</span>     if not h:
+<span class="ansi-green-intense-fg ansi-bold">    107</span>         return None
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/rings.py:1493</span>, in <span class="ansi-cyan-fg">PolyElement.rem</span><span class="ansi-blue-fg">(self, G)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1491</span> for mg, cg in g.iterterms():
+<span class="ansi-green-intense-fg ansi-bold">   1492</span>     m1 = monomial_mul(mg, m)
+<span class="ansi-green-fg">-&gt; 1493</span>     c1 = get(m1, zero) - c*cg
+<span class="ansi-green-intense-fg ansi-bold">   1494</span>     if not c1:
+<span class="ansi-green-intense-fg ansi-bold">   1495</span>         del f[m1]
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/fields.py:451</span>, in <span class="ansi-cyan-fg">FracElement.__sub__</span><span class="ansi-blue-fg">(f, g)</span>
+<span class="ansi-green-intense-fg ansi-bold">    449</span>         return f.new(f.numer - g.numer, f.denom)
+<span class="ansi-green-intense-fg ansi-bold">    450</span>     else:
+<span class="ansi-green-fg">--&gt; 451</span>         return f.new(f.numer*g.denom - f.denom*g.numer, f.denom*g.denom)
+<span class="ansi-green-intense-fg ansi-bold">    452</span> elif isinstance(g, field.ring.dtype):
+<span class="ansi-green-intense-fg ansi-bold">    453</span>     return f.new(f.numer - f.denom*g, f.denom)
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/fields.py:301</span>, in <span class="ansi-cyan-fg">FracElement.new</span><span class="ansi-blue-fg">(f, numer, denom)</span>
+<span class="ansi-green-intense-fg ansi-bold">    300</span> def new(f, numer, denom):
+<span class="ansi-green-fg">--&gt; 301</span>     return f.raw_new(*numer.cancel(denom))
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/rings.py:2223</span>, in <span class="ansi-cyan-fg">PolyElement.cancel</span><span class="ansi-blue-fg">(self, g)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2220</span> domain = ring.domain
+<span class="ansi-green-intense-fg ansi-bold">   2222</span> if not (domain.is_Field and domain.has_assoc_Ring):
+<span class="ansi-green-fg">-&gt; 2223</span>     _, p, q = f.cofactors(g)
+<span class="ansi-green-intense-fg ansi-bold">   2224</span> else:
+<span class="ansi-green-intense-fg ansi-bold">   2225</span>     new_ring = ring.clone(domain=domain.get_ring())
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/rings.py:2138</span>, in <span class="ansi-cyan-fg">PolyElement.cofactors</span><span class="ansi-blue-fg">(f, g)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2135</span>     h, cfg, cff = g._gcd_monom(f)
+<span class="ansi-green-intense-fg ansi-bold">   2136</span>     return h, cff, cfg
+<span class="ansi-green-fg">-&gt; 2138</span> J, (f, g) = f.deflate(g)
+<span class="ansi-green-intense-fg ansi-bold">   2139</span> h, cff, cfg = f._gcd(g)
+<span class="ansi-green-intense-fg ansi-bold">   2141</span> return (h.inflate(J), cff.inflate(J), cfg.inflate(J))
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/sympy/polys/rings.py:2069</span>, in <span class="ansi-cyan-fg">PolyElement.deflate</span><span class="ansi-blue-fg">(f, *G)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2067</span>     for monom in p.itermonoms():
+<span class="ansi-green-intense-fg ansi-bold">   2068</span>         for i, m in enumerate(monom):
+<span class="ansi-green-fg">-&gt; 2069</span>             J[i] = igcd(J[i], m)
+<span class="ansi-green-intense-fg ansi-bold">   2071</span> for i, b in enumerate(J):
+<span class="ansi-green-intense-fg ansi-bold">   2072</span>     if not b:
+
+<span class="ansi-red-fg">KeyboardInterrupt</span>: </pre>
+</div>
 </div>
 
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Other-nonlinear-solutions-?">Other nonlinear solutions ?<a class="anchor-link" href="#Other-nonlinear-solutions-?">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[374]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="k">def</span> <span class="nf">equations</span><span class="p">(</span><span class="nb">vars</span><span class="p">):</span>
+    <span class="n">a0</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">b0</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">c0</span><span class="p">,</span><span class="n">c1</span> <span class="o">=</span> <span class="nb">vars</span>
+    <span class="n">equations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">equations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">a0</span> <span class="o">-</span> <span class="n">b0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">a1</span> <span class="o">-</span> <span class="n">b1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">equations</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">a0</span> <span class="o">-</span> <span class="n">c0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">a1</span> <span class="o">-</span> <span class="n">c1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">equations</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">b0</span> <span class="o">-</span> <span class="n">c0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">b1</span> <span class="o">-</span> <span class="n">c1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">equations</span>
+
+<span class="n">ini</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span>  <span class="n">fsolve</span><span class="p">(</span><span class="n">equations</span><span class="p">,</span> <span class="n">ini</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb Cell 48</span> in <span class="ansi-cyan-fg">&lt;cell line: 12&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y111sZmlsZQ%3D%3D?line=8&#39;&gt;9&lt;/a&gt;</span>     return equations
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y111sZmlsZQ%3D%3D?line=10&#39;&gt;11&lt;/a&gt;</span> ini = (1, 1, 1,1,1,1)
+<span class="ansi-green-fg">---&gt; &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y111sZmlsZQ%3D%3D?line=11&#39;&gt;12&lt;/a&gt;</span> x, y, z =  fsolve(equations, ini)
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y111sZmlsZQ%3D%3D?line=12&#39;&gt;13&lt;/a&gt;</span> print(x, y, z)
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/scipy/optimize/_minpack_py.py:160</span>, in <span class="ansi-cyan-fg">fsolve</span><span class="ansi-blue-fg">(func, x0, args, fprime, full_output, col_deriv, xtol, maxfev, band, epsfcn, factor, diag)</span>
+<span class="ansi-green-intense-fg ansi-bold">     49</span> &#34;&#34;&#34;
+<span class="ansi-green-intense-fg ansi-bold">     50</span> Find the roots of a function.
+<span class="ansi-green-intense-fg ansi-bold">     51</span> 
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-intense-fg ansi-bold">    150</span> 
+<span class="ansi-green-intense-fg ansi-bold">    151</span> &#34;&#34;&#34;
+<span class="ansi-green-intense-fg ansi-bold">    152</span> options = {&#39;col_deriv&#39;: col_deriv,
+<span class="ansi-green-intense-fg ansi-bold">    153</span>            &#39;xtol&#39;: xtol,
+<span class="ansi-green-intense-fg ansi-bold">    154</span>            &#39;maxfev&#39;: maxfev,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-intense-fg ansi-bold">    157</span>            &#39;factor&#39;: factor,
+<span class="ansi-green-intense-fg ansi-bold">    158</span>            &#39;diag&#39;: diag}
+<span class="ansi-green-fg">--&gt; 160</span> res = _root_hybr(func, x0, args, jac=fprime, **options)
+<span class="ansi-green-intense-fg ansi-bold">    161</span> if full_output:
+<span class="ansi-green-intense-fg ansi-bold">    162</span>     x = res[&#39;x&#39;]
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/scipy/optimize/_minpack_py.py:226</span>, in <span class="ansi-cyan-fg">_root_hybr</span><span class="ansi-blue-fg">(func, x0, args, jac, col_deriv, xtol, maxfev, band, eps, factor, diag, **unknown_options)</span>
+<span class="ansi-green-intense-fg ansi-bold">    224</span> if not isinstance(args, tuple):
+<span class="ansi-green-intense-fg ansi-bold">    225</span>     args = (args,)
+<span class="ansi-green-fg">--&gt; 226</span> shape, dtype = _check_func(&#39;fsolve&#39;, &#39;func&#39;, func, x0, args, n, (n,))
+<span class="ansi-green-intense-fg ansi-bold">    227</span> if epsfcn is None:
+<span class="ansi-green-intense-fg ansi-bold">    228</span>     epsfcn = finfo(dtype).eps
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/scipy/optimize/_minpack_py.py:38</span>, in <span class="ansi-cyan-fg">_check_func</span><span class="ansi-blue-fg">(checker, argname, thefunc, x0, args, numinputs, output_shape)</span>
+<span class="ansi-green-intense-fg ansi-bold">     36</span>             msg += &#34;.&#34;
+<span class="ansi-green-intense-fg ansi-bold">     37</span>         msg += &#39;Shape should be %s but it is %s.&#39; % (output_shape, shape(res))
+<span class="ansi-green-fg">---&gt; 38</span>         raise TypeError(msg)
+<span class="ansi-green-intense-fg ansi-bold">     39</span> if issubdtype(res.dtype, inexact):
+<span class="ansi-green-intense-fg ansi-bold">     40</span>     dt = res.dtype
+
+<span class="ansi-red-fg">TypeError</span>: fsolve: there is a mismatch between the input and output shape of the &#39;func&#39; argument &#39;equations&#39;.Shape should be (6,) but it is (3,).</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="%C2%A0GEKKO-Suite">&#160;GEKKO Suite<a class="anchor-link" href="#%C2%A0GEKKO-Suite">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[390]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">gekko</span> <span class="kn">import</span> <span class="n">GEKKO</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">GEKKO</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">Var</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>      <span class="c1"># define new variable, initial value=0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">Var</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># define new variable, initial value=1</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">Var</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">Equations</span><span class="p">([</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">==</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># equations</span>
+<span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>     <span class="c1"># solve</span>
+
+<span class="nb">print</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="c1"># print solution</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[-0.89442724267, 0.44721362133]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[397]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># # Infraestructure = PODs?</span>
+<span class="c1"># G = nx.balanced_tree(2,2)</span>
+<span class="c1"># labels = {l:l for l in G.nodes}</span>
+<span class="c1"># # latency matrix</span>
+<span class="c1"># paths = dict(nx.all_pairs_shortest_path(G))</span>
+<span class="c1"># lats = [len(paths[n1][n2])-1 for n1 in G.nodes() for n2 in G.nodes()]</span>
+<span class="c1"># latM = np.array(lats).reshape(len(G.nodes()),len(G.nodes()))</span>
+<span class="c1"># latM = np.triu(latM)</span>
+
+
+<span class="c1">#Application: three services = GATEs</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">nodes</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s2">&quot;C&quot;</span><span class="p">}</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,{</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,{</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,{</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})]</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">l</span><span class="p">:</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">}</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">nx_agraph</span><span class="o">.</span><span class="n">graphviz_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># latency matrix</span>
+<span class="n">paths</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">all_pairs_shortest_path</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+
+<span class="n">lats</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">[</span><span class="n">n1</span><span class="p">][</span><span class="n">n2</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">n1</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> <span class="k">for</span> <span class="n">n2</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+<span class="n">latM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lats</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))</span>
+<span class="n">latM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">latM</span><span class="p">)</span>
+
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">GEKKO</span><span class="p">()</span>
+
+<span class="c1"># Solve euclidean equations </span>
+<span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+<span class="c1"># dim = 2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dimension: </span><span class="si">%i</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">dim</span>)
+    <span class="nb">vars</span> <span class="o">=</span> <span class="s2">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="nb">vars</span><span class="p">):</span>
+        <span class="k">assert</span><span class="p">(</span><span class="s2">&quot;Warning. add more names &quot;</span><span class="p">)</span>
+
+    <span class="n">unkX</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">vars</span><span class="p">)[</span><span class="n">e</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">d</span> for e,_ in enumerate(G.nodes()) for d in range(dim) ]
+    <span class="n">syms</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">Var</span><span class="p">(</span><span class="n">lb</span><span class="o">=-</span><span class="mi">100</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unkX</span><span class="p">))]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">syms</span><span class="p">)</span>
+
+    <span class="n">equations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">latM</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">iy</span><span class="p">,</span> <span class="n">distance</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">iy</span> <span class="o">&lt;=</span> <span class="n">ix</span><span class="p">:</span> <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">sumDim</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
+                    <span class="n">sumDim</span> <span class="o">+=</span> <span class="p">(</span><span class="n">syms</span><span class="p">[(</span><span class="n">ix</span><span class="o">*</span><span class="n">dim</span><span class="p">)</span><span class="o">+</span><span class="n">d</span><span class="p">]</span> <span class="o">-</span> <span class="n">syms</span><span class="p">[(</span><span class="n">iy</span><span class="o">*</span><span class="n">dim</span><span class="p">)</span><span class="o">+</span><span class="n">d</span><span class="p">])</span> <span class="c1">#**2</span>
+                <span class="c1"># eq = sp.sqrt(sumDim)</span>
+                <span class="n">eq</span> <span class="o">=</span> <span class="n">sumDim</span>
+                <span class="n">m</span><span class="o">.</span><span class="n">Equation</span><span class="p">(</span><span class="n">eq</span><span class="o">==</span><span class="n">distance</span><span class="p">)</span>
+                <span class="c1"># equations.append(eq == distance)</span>
+
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">equations</span><span class="p">)</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">syms</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">break</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Dimension: 2
+[0, 0, 0, 0, 0, 0]
+[]
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">Exception</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb Cell 51</span> in <span class="ansi-cyan-fg">&lt;cell line: 32&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y116sZmlsZQ%3D%3D?line=54&#39;&gt;55&lt;/a&gt;</span>             # equations.append(eq == distance)
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y116sZmlsZQ%3D%3D?line=57&#39;&gt;58&lt;/a&gt;</span> print(equations)
+<span class="ansi-green-fg">---&gt; &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y116sZmlsZQ%3D%3D?line=58&#39;&gt;59&lt;/a&gt;</span> m.solve(disp=False)
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y116sZmlsZQ%3D%3D?line=59&#39;&gt;60&lt;/a&gt;</span> for var in syms:
+<span class="ansi-green-intense-fg ansi-bold">     &lt;a href=&#39;vscode-notebook-cell:/Users/isaac/Projects/ForceDirectAllocation/QuadraticPlacement.ipynb#Y116sZmlsZQ%3D%3D?line=60&#39;&gt;61&lt;/a&gt;</span>     print(var.value)
+
+File <span class="ansi-green-fg">~/.pyenv/versions/3.9.7/envs/my397/lib/python3.9/site-packages/gekko/gekko.py:2185</span>, in <span class="ansi-cyan-fg">GEKKO.solve</span><span class="ansi-blue-fg">(self, disp, debug, GUI, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2183</span> #print APM error message and die
+<span class="ansi-green-intense-fg ansi-bold">   2184</span> if (debug &gt;= 1) and (&#39;@error&#39; in response):
+<span class="ansi-green-fg">-&gt; 2185</span>     raise Exception(response)
+<span class="ansi-green-intense-fg ansi-bold">   2187</span> #load results
+<span class="ansi-green-intense-fg ansi-bold">   2188</span> def byte2str(byte):
+
+<span class="ansi-red-fg">Exception</span>:  @error: Solution Not Found
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[392]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
 </div>
 
 </div>
@@ -16728,33 +17173,68 @@ Dimension: 4
 <p>References</p>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=WWm-g2nLHds">https://www.youtube.com/watch?v=WWm-g2nLHds</a></li>
+<li><a href="https://stackoverflow.com/questions/69759905/solve-a-non-linear-system-of-equations">https://stackoverflow.com/questions/69759905/solve-a-non-linear-system-of-equations</a></li>
+<li></li>
 </ul>
 
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[395]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>&lt;bound method GEKKO.Equations of &lt;gekko.gekko.GEKKO object at 0x16b80f5e0&gt;&gt;
+</pre>
+</div>
+</div>
 
 </div>
+
 </div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
 
+     </div>
 </div>
 </div>
 </div>
+
 </div>
 </body>
 
