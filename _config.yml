@@ -43,6 +43,7 @@ exclude:
   - README.md
   - UpdateLaWeb
   - jekyll-theme-hamilton.gemspec
+  - vendor/
 
 # Jekyll SEO Tag (Optional)
 # =========================
