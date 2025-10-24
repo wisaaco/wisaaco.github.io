@@ -1,6 +1,517 @@
-// Placeholder to allow customizing styles.
+// Academic Journal Styling for Computer Science
+
+// Import academic fonts
+@import url('https://fonts.googleapis.com/css2?family=Computer+Modern+Serif:wght@400;700&family=Computer+Modern+Sans:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap');
+
+// Academic paper styling
+.academic-paper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Computer Modern Serif', 'Times New Roman', serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+}
+
+// Paper header
+.paper-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 1rem;
+}
+
+.paper-title {
+  font-family: 'Computer Modern Sans', 'Arial', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- IEEE-style Author Section --- */
+.ieee-author {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 1.5rem 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	background: #fff;
+	max-width: 800px;
+	margin: 2rem auto;
+  }
+  
+  /* Photo style */
+  .ieee-author .photo-container {
+	flex-shrink: 0;
+  }
+  
+  .ieee-author .profile-photo {
+	width: 120px;
+	height: 160px;
+	object-fit: cover;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+  }
+  
+  /* Author text area */
+  .ieee-author .personal-details {
+	flex: 1;
+	font-family: 'Times New Roman', 'Georgia', serif;
+	color: #2c3e50;
+  }
+  
+  /* Name and title */
+  .ieee-author .personal-name {
+	font-size: 1.4rem;
+	font-weight: 700;
+	margin: 0 0 0.2rem 0;
+	color: #000;
+  }
+  
+  .ieee-author .personal-title {
+	font-size: 1rem;
+	font-style: italic;
+	margin: 0 0 0.5rem 0;
+  }
+  
+  /* Institution and contact */
+  .ieee-author .personal-institution {
+	font-size: 0.95rem;
+	margin: 0 0 0.4rem 0;
+	line-height: 1.4;
+  }
+  
+  .ieee-author .institution-link {
+	color: #0056b3;
+	text-decoration: none;
+  }
+  
+  .ieee-author .institution-link:hover {
+	text-decoration: underline;
+  }
+  
+  /* Contact info */
+  .ieee-author .personal-contact {
+	font-size: 0.9rem;
+	color: #444;
+	margin: 0;
+	line-height: 1.5;
+  }
+  
+  .ieee-author .email a {
+	color: #000;
+	text-decoration: none;
+  }
+  
+  .ieee-author .email a:hover {
+	text-decoration: underline;
+  }
+  
+  .ieee-author .email {
+	font-family: 'Fira Code', 'Courier New', monospace;
+	background: #f1f3f5;
+	padding: 0.2rem 0.4rem;
+	border-radius: 3px;
+  }
+  
+  .ieee-author .address {
+	display: inline-block;
+	margin-top: 0.2rem;
+	color: #555;
+  }
+
+  
+/* Overall section layout */
+.abstract-section {
+	margin: 2rem auto;
+	max-width: 800px;
+  }
+  
+  /* --- Terminal block --- */
+  .terminal {
+	background-color: #1e1e1e;
+	color: #e0e0e0;
+	font-family: 'Fira Code', 'Courier New', monospace;
+	padding: 0.75rem 1rem;
+	border-radius: 6px 6px 0 0;
+	border: 1px solid #333;
+	font-size: 0.95rem;
+  }
+  
+  .prompt {
+	color: #00ff88;
+	margin-right: 0.25rem;
+  }
+  
+  /* --- Paper-like abstract --- */
+  .paper {
+	background: #fff;
+	border: 1px solid #ccc;
+	border-top: none;
+	padding: 2rem;
+	font-family: 'Georgia', 'Times New Roman', serif;
+	line-height: 1.6;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .paper h2 {
+	text-align: left;
+	text-transform: uppercase;
+	font-size: 1.2rem;
+	letter-spacing: 0.5px;
+	margin-bottom: 1rem;
+	color: #2c3e50;
+  }
+  
+  .paper p {
+	margin: 0;
+	text-align: justify;
+	color: #333;
+  }
+  
 
 
+
+
+/* Keywords section layout */
+.keywords-section {
+	margin: 2rem auto;
+	max-width: 800px;
+  }
+  
+  /* Terminal header (reuses style from abstract section) */
+  .keywords-section .terminal {
+	background-color: #1e1e1e;
+	color: #e0e0e0;
+	font-family: 'Fira Code', 'Courier New', monospace;
+	padding: 0.75rem 1rem;
+	border-radius: 6px 6px 0 0;
+	border: 1px solid #333;
+	font-size: 0.95rem;
+  }
+  
+  .keywords-section .prompt {
+	color: #00ff88;
+	margin-right: 0.25rem;
+  }
+  
+  /* Docker-compose code block */
+  .docker-compose {
+	background-color: #f8f9fa;
+	border: 1px solid #ccc;
+	border-top: none;
+	padding: 1.5rem;
+	font-family: 'Fira Code', 'Courier New', monospace;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	color: #2c3e50;
+	overflow-x: auto;
+	border-radius: 0 0 6px 6px;
+  }
+  
+  /* YAML syntax highlighting */
+  .yaml .comment {
+	color: #6a737d;
+  }
+  
+  .yaml .key {
+	color: #005cc5;
+	font-weight: 500;
+  }
+  
+  .yaml .value {
+	color: #22863a;
+  }
+  
+  .yaml-link {
+	color: #0366d6;
+	text-decoration: none;
+  }
+  
+  .yaml-link:hover {
+	text-decoration: underline;
+	
+  }
+/* Highlight main service (e.g. GitHub) */
+.main-service {
+	color: #d73a49; /* GitHub red accent */
+	font-weight: 700;
+  }
+  
+  /* Running status */
+  .status-running {
+	color: #28a745;
+	font-weight: 600;
+  }
+  
+  /* Heartbeat animation */
+  .heartbeat {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin-left: 4px;
+	background-color: #28a745;
+	border-radius: 50%;
+	animation: heartbeat 1.5s infinite;
+	vertical-align: middle;
+  }
+  
+  @keyframes heartbeat {
+	0%, 100% {
+	  transform: scale(1);
+	  opacity: 0.8;
+	}
+	50% {
+	  transform: scale(1.4);
+	  opacity: 1;
+	}
+  }
+  
+  
+
+
+// Paper content
+.paper-content {
+  margin: 2rem 0;
+}
+
+.paper-content h2 {
+  font-family: 'Computer Modern Sans', 'Arial', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem 0;
+  color: #2c3e50;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 0.5rem;
+}
+
+// Publications list
+.publications-list {
+  margin: 1rem 0;
+}
+
+.publication-item {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-left: 3px solid #6c757d;
+  background: #f8f9fa;
+}
+
+.publication-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  
+  a {
+    color: #007acc;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.publication-meta {
+  margin-bottom: 0.5rem;
+}
+
+.publication-date {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.publication-abstract {
+  font-size: 0.95rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+// References section
+.references {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #e9ecef;
+  border-left: 4px solid #6c757d;
+}
+
+.references h2 {
+  font-family: 'Computer Modern Sans', 'Arial', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.reference-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reference-item {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+}
+
+.reference-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #495057;
+  font-size: 0.9rem;
+  
+  &:hover {
+    color: #007acc;
+  }
+  
+  i {
+    font-size: 1.1rem;
+    color: #007acc;
+  }
+}
+
+// Pagination styling
+.pager {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.pagination {
+  display: inline-flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.5rem;
+}
+
+.pagination li {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+}
+
+.pagination a,
+.pagination div {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #495057;
+}
+
+.pagination a:hover {
+  background: #007acc;
+  color: #fff;
+}
+
+.current-page {
+  background: #007acc;
+  color: #fff;
+}
+
+// Hide sidebar button for academic style
+.site-sidebar-button {
+  display: none;
+}
+
+// Clean header for academic style
+.site-header {
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 2rem;
+}
+
+.site-header .wrapper {
+  padding: 1rem 0;
+}
+
+// Override Hamilton theme grid layout for academic style
+.site-body {
+  display: block !important;
+  grid-template-columns: none !important;
+  overflow: visible !important;
+}
+
+// Ensure site-main uses full width
+.site-main {
+  max-width: 80%;
+  width: 100% !important;
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+}
+
+// Override wrapper constraints for full page width
+.wrapper {
+  max-width: none !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+// Responsive design
+@media (max-width: 1024px) {
+  .academic-paper {
+    padding: 1rem;
+    width: 100%;
+  }
+  
+  .paper-title {
+    font-size: 2rem;
+  }
+  
+  .keyword-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .personal-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .personal-details {
+    text-align: center;
+  }
+  
+  .profile-photo {
+    width: 120px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .personal-info {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .personal-name {
+    font-size: 1.5rem;
+  }
+  
+  .personal-title {
+    font-size: 1rem;
+  }
+  
+  .profile-photo {
+    width: 100px;
+    height: 130px;
+  }
+}
+
+// Keep existing UIB icon styling
 .iconoUIBslide{
     background: url('https://logo.uib.cat/digitalAssets/338/338750_logo-uib-vertical-color72.png') center right no-repeat;
  	background-size:     contain; 

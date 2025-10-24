@@ -12,13 +12,7 @@
       </header>
       
       <div class="site-body wrapper">
-        <aside class="site-sidebar" id="site-sidebar">
-          {% if page.toc %}
-            {% include sidebar-toc.html %}
-          {% else %}
-            {% include sidebar.html %}
-          {% endif %}
-        </aside>
+        <!-- Sidebar hidden for academic journal style -->
         <main class="site-main" id="site-main" aria-label="Content">
           {{ content }}
           <footer class="site-footer">

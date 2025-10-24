@@ -1,7 +1,7 @@
-title: Isaac Lera 
-description: Code recipes
+title: Academic and Research Bits
+description: Computer Science Research and Academic Publications
 author: Isaac Lera
-avatar: /logo.png
+avatar: photo_Isaac_Lera.png
 email: isaac.lera \at uib \dot es
 fitxaUIB: "University file"
 fitxaUIBURL: https://personal.uib.es/isaac.lera
@@ -47,7 +47,7 @@ exclude:
 
 # Jekyll SEO Tag (Optional)
 # =========================
-logo: logo.png
+logo: photo_Isaac_Lera.png
 social:
   name: Isaac Lera
   links:
