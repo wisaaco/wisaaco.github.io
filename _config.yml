@@ -7,6 +7,8 @@ fitxaUIB: "University file"
 fitxaUIBURL: https://personal.uib.es/isaac.lera
 #baseurl: "/isaaclera"
 
+theme: jekyll-theme-hamilton
+
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
@@ -42,7 +44,6 @@ exclude:
   - scripts/
   - README.md
   - UpdateLaWeb
-  - jekyll-theme-hamilton.gemspec
   - vendor/
 
 # Jekyll SEO Tag (Optional)
