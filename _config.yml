@@ -7,11 +7,11 @@ fitxaUIB: "University file"
 fitxaUIBURL: https://personal.uib.es/isaac.lera
 #baseurl: "/isaaclera"
 
-theme: jekyll-theme-hamilton
+# Theme is embedded locally (not using gem)
+# theme: jekyll-theme-hamilton
 
 plugins:
   - jekyll-seo-tag
-  - jekyll-sitemap
 
 # Uncomment the below line and set the tracking ID for enabling Google Analytics
 # 
